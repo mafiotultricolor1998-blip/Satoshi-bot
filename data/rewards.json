@@ -1,6 +1,93 @@
 {
-  "checkedAt": null,
+  "checkedAt": "2026-10-28T15:28:37.242084+00:00",
   "intervalHours": 6,
-  "disclaimer": "Initial report; run GitHub Actions to populate it.",
-  "sources": []
+  "disclaimer": "Public-page monitoring only. No account login, eligibility verification, claims, or payments.",
+  "sources": [
+    {
+      "name": "Bitcoin Entdecken",
+      "url": "https://bitcoin-entdecken.de/",
+      "checkedAt": "2026-10-28T15:28:37.242101+00:00",
+      "accessible": true,
+      "httpStatus": 200,
+      "indicators": [
+        "satoshi",
+        "bitcoin"
+      ],
+      "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
+    },
+    {
+      "name": "BTC GACHA",
+      "url": "https://www.btcgacha.com/",
+      "checkedAt": "2026-10-28T15:28:37.947663+00:00",
+      "accessible": true,
+      "httpStatus": 200,
+      "indicators": [
+        "reward",
+        "rewards",
+        "faucet",
+        "satoshi",
+        "bitcoin",
+        "claim",
+        "free btc"
+      ],
+      "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
+    },
+    {
+      "name": "MintSats",
+      "url": "https://mintsats.app/",
+      "checkedAt": "2026-10-28T15:28:38.349102+00:00",
+      "accessible": true,
+      "httpStatus": 200,
+      "indicators": [
+        "reward",
+        "rewards",
+        "faucet",
+        "satoshi",
+        "bitcoin",
+        "claim"
+      ],
+      "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
+    },
+    {
+      "name": "Free Crypto World",
+      "url": "https://freecrypto.world/",
+      "checkedAt": "2026-10-28T15:28:39.064819+00:00",
+      "accessible": true,
+      "httpStatus": 200,
+      "indicators": [
+        "reward",
+        "rewards",
+        "faucet",
+        "satoshi",
+        "bitcoin",
+        "claim",
+        "free btc",
+        "earn bitcoin"
+      ],
+      "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
+    },
+    {
+      "name": "sMiles",
+      "url": "https://www.smilesbitcoin.com/",
+      "checkedAt": "2026-10-28T15:28:39.400883+00:00",
+      "accessible": true,
+      "httpStatus": 200,
+      "indicators": [
+        "reward",
+        "rewards",
+        "bitcoin",
+        "earn bitcoin"
+      ],
+      "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
+    },
+    {
+      "name": "FreeBitcoin",
+      "url": "https://freebitco.in/",
+      "checkedAt": "2026-10-28T15:28:39.580692+00:00",
+      "accessible": false,
+      "httpStatus": null,
+      "indicators": [],
+      "note": "Could not verify this page automatically: HTTPError"
+    }
+  ]
 }
