@@ -1,71 +1,472 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="ro">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<title>Satoshi Bot</title>
-<style>
-:root{color-scheme:dark;--bg:#0b1020;--panel:#151d30;--panel2:#1d2940;--text:#f4f7fb;--muted:#a6b2c8;--orange:#f7931a;--green:#55d6a1;--line:#2b3852}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1a2a46 0,#0b1020 44%);color:var(--text);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-main{max-width:760px;margin:auto;padding:22px 16px calc(36px + env(safe-area-inset-bottom))}
-header{display:flex;align-items:center;gap:12px;margin:8px 0 22px}.logo{width:52px;height:52px;border-radius:16px;background:var(--orange);display:grid;place-items:center;font-size:30px;font-weight:800;color:#fff}.subtitle{color:var(--muted);font-size:13px;margin-top:4px}
-h1{font-size:25px;margin:0}h2{font-size:18px;margin:0 0 14px}p{line-height:1.5}.card{background:rgba(21,29,48,.94);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 10px 28px #0002}.hero{background:linear-gradient(130deg,#263751,#182239);padding:22px}.muted{color:var(--muted)}.small{font-size:12px}.balance{font-size:36px;font-weight:800;letter-spacing:-1px;margin:8px 0}.pill{display:inline-block;border-radius:99px;background:#26354e;color:#cfe0f7;padding:5px 9px;font-size:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#10182a;border:1px solid var(--line);padding:13px;border-radius:13px}.stat strong{display:block;font-size:23px;margin-top:7px}.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}.tabs button{flex:1;min-width:90px}.btn,button{border:0;border-radius:12px;padding:12px 14px;font:inherit;font-weight:650;cursor:pointer;background:var(--orange);color:#171717}.btn.secondary,button.secondary{background:#26354e;color:var(--text);border:1px solid #3a4b68}button:disabled{opacity:.45;cursor:not-allowed}label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}input,select{width:100%;padding:12px;border-radius:11px;border:1px solid #3a4b68;background:#0d1525;color:var(--text);font:inherit}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.source{padding:13px 0;border-top:1px solid var(--line)}.source:first-of-type{border-top:0}.source h3{font-size:15px;margin:0 0 5px}.source p{font-size:13px;color:var(--muted);margin:5px 0 9px}.source a{color:#ffbd66;text-decoration:none;font-weight:650}.status{font-size:12px;color:var(--muted)}.status.ok{color:var(--green)}.notice{border-left:3px solid var(--orange);padding:10px 12px;background:#211c18;border-radius:8px;color:#f5d8b2;font-size:13px;line-height:1.5}.hidden{display:none}.entry{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.entry:last-child{border:0}.entry strong{color:var(--green)}footer{color:var(--muted);font-size:12px;line-height:1.5;padding:12px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b1020">
+  <meta name="description" content="Satoshi Bot - monitor pentru site-uri publice cu recompense Bitcoin.">
+  <title>Satoshi Bot | Dashboard</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b1020;
+      --panel: #151d31;
+      --panel2: #1b2640;
+      --text: #f5f7ff;
+      --muted: #a4b0ca;
+      --green: #47e6a1;
+      --red: #ff747e;
+      --yellow: #ffd166;
+      --border: #2a3653;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(ellipse at top, #1b3153 0%, var(--bg) 52%);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(100% - 28px, 760px);
+      margin: auto;
+      padding: 28px 0 36px;
+    }
+
+    header { margin-bottom: 24px; }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+    }
+
+    .logo {
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #ffbf47, #f28c28);
+      color: #17120a;
+      font-size: 29px;
+      font-weight: 900;
+      box-shadow: 0 8px 28px #f5a62322;
+    }
+
+    h1 {
+      font-size: clamp(25px, 6vw, 34px);
+      margin: 0;
+      letter-spacing: -1px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 5px 0 0;
+      font-size: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border: 1px solid var(--border);
+      background: #111a2c;
+      color: var(--muted);
+      border-radius: 99px;
+      padding: 8px 12px;
+      font-size: 12px;
+      margin-top: 17px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--yellow);
+    }
+
+    .dot.good { background: var(--green); }
+    .dot.bad { background: var(--red); }
+
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+
+    .stat, .panel, .site {
+      background: linear-gradient(145deg, var(--panel), #11192b);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .stat { padding: 15px 12px; min-width: 0; }
+    .stat-label { color: var(--muted); font-size: 12px; }
+    .stat-number { font-size: 27px; font-weight: 800; margin-top: 7px; }
+    .green { color: var(--green); }
+    .red { color: var(--red); }
+    .yellow { color: var(--yellow); }
+
+    .panel { padding: 17px; margin-bottom: 20px; }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: 18px; margin: 0; }
+    .muted { color: var(--muted); font-size: 13px; line-height: 1.5; }
+
+    button, .site-button {
+      font: inherit;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .refresh {
+      border: 0;
+      border-radius: 12px;
+      padding: 11px 14px;
+      color: #101629;
+      background: var(--green);
+      font-weight: 750;
+      font-size: 13px;
+    }
+
+    .refresh:disabled { opacity: .6; cursor: wait; }
+
+    .site-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .site { padding: 15px; min-width: 0; }
+
+    .site-heading {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .site-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 38px;
+      border-radius: 12px;
+      background: var(--panel2);
+      font-size: 19px;
+    }
+
+    .site h3 { font-size: 14px; margin: 2px 0 5px; }
+    .site-status { font-size: 12px; color: var(--muted); line-height: 1.4; }
+    .site-note { font-size: 12px; color: var(--muted); margin: 13px 0; min-height: 32px; line-height: 1.45; }
+
+    .site-button {
+      display: block;
+      text-decoration: none;
+      text-align: center;
+      width: 100%;
+      padding: 11px 8px;
+      border: 1px solid #3a496a;
+      border-radius: 11px;
+      color: var(--text);
+      background: #202c46;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .site-button:active, .refresh:active { transform: scale(.98); }
+
+    .section-title { margin: 22px 0 12px; }
+
+    .report-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .report-line:last-child { border-bottom: 0; }
+    .report-value { text-align: right; overflow-wrap: anywhere; }
+
+    .notice {
+      border: 1px solid #65532b;
+      background: #302719;
+      color: #ffe2a1;
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.6;
+      margin-top: 16px;
+    }
+
+    .error-message {
+      color: var(--red);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    footer {
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.7;
+      padding: 10px 0;
+    }
+
+    a:focus-visible, button:focus-visible {
+      outline: 2px solid var(--green);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 420px) {
+      .container { width: calc(100% - 22px); padding-top: 22px; }
+      .summary { gap: 7px; }
+      .stat { padding: 13px 9px; }
+      .stat-number { font-size: 23px; }
+      .site-list { gap: 8px; }
+      .site { padding: 11px; }
+      .site-icon { width: 32px; height: 32px; flex-basis: 32px; font-size: 16px; }
+      .site h3 { font-size: 13px; overflow-wrap: anywhere; }
+      .site-note { min-height: 48px; }
+    }
+
+    @media (max-width: 340px) {
+      .site-list { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
-<body><main>
-<header><div class="logo">₿</div><div><h1>Satoshi Bot</h1><div class="subtitle">Tracker de recompense · versiune gratuită</div></div></header>
-<section class="card hero">
- <span class="pill">PORTOFELUL NU ESTE CONECTAT</span>
- <div class="muted" style="margin-top:16px;font-size:13px">Sold înregistrat manual</div>
- <div class="balance" id="balance">0 sats</div>
- <div class="muted small">Nu este soldul real din Wallet of Satoshi. Înregistrează numai plăți pe care le-ai verificat.</div>
-</section>
-<section class="stats">
- <div class="stat"><span class="muted small">Recompense înregistrate</span><strong id="count">0</strong></div>
- <div class="stat"><span class="muted small">Surse verificate în această sesiune</span><strong id="checks">0</strong></div>
-</section>
-<nav class="tabs"><button class="secondary" data-tab="sources">Surse</button><button class="secondary" data-tab="add">Adaugă sats</button><button class="secondary" data-tab="history">Istoric</button></nav>
-<section id="sources" class="card panel"><h2>Surse de recompense</h2>
- <p class="muted small">Verificarea deschide site-urile oficiale. Această pagină nu poate confirma automat că ai fost plătit și nu automatizează revendicările.</p>
- <div class="source"><h3>Bitcoin Entdecken</h3><p>Recompensă unică deja revendicată în cazul tău; plata nu a fost confirmată.</p><a href="https://bitcoin-entdecken.de/en/sats" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div class="source"><h3>sMiles</h3><p>Verifică disponibilitatea, regulile și pragul de retragere înainte să începi.</p><a href="https://www.smilesbitcoin.com/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div class="source"><h3>FreeBTC</h3><p>Verifică termenii, retragerile și dacă serviciul este disponibil în regiunea ta.</p><a href="https://freebtc.app/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div class="source"><h3>BTC GACHA</h3><p>Sursă suplimentară de verificat; botul poate confirma accesibilitatea paginii, nu eligibilitatea sau plata.</p><a href="https://www.btcgacha.com/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div class="source"><h3>MintSats</h3><p>Verifică regulile și pragurile de retragere înainte de a folosi serviciul.</p><a href="https://mintsats.app/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div class="source"><h3>Free Crypto World</h3><p>Director de platforme; tratează recenziile și rapoartele de plată ca informații de verificat.</p><a href="https://freecrypto.world/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
- <div id="autoReport" class="notice" style="margin-top:12px">Raport automat: încă nu există un raport. După instalarea automatizării, acesta va fi actualizat de GitHub Actions aproximativ la fiecare 6 ore.</div>
- <button id="refreshReport" class="secondary" style="width:100%;margin-top:10px">Încarcă raportul automat</button>
- <button id="checkSources" class="secondary" style="width:100%;margin-top:12px">Marchează sursele ca verificate</button><div id="checkNote" class="status" style="margin-top:9px">Nu s-au făcut verificări încă.</div>
-</section>
-<section id="add" class="card panel hidden"><h2>Înregistrează o recompensă</h2><div class="notice">Adaugă doar satoshi primiți efectiv. Nu înregistra cei 21 sats de pe Bitcoin Entdecken până când nu vezi plata în portofel.</div>
- <label for="amount">Sumă în satoshi</label><input id="amount" type="number" min="1" step="1" placeholder="Ex. 21">
- <label for="source">Sursa</label><select id="source"><option>Bitcoin Entdecken</option><option>sMiles</option><option>FreeBTC</option><option>Altă sursă</option></select>
- <label for="note">Notă (opțional)</label><input id="note" maxlength="120" placeholder="Ex. plata Lightning confirmată">
- <button id="addReward" style="width:100%;margin-top:14px">Salvează recompensa</button><div id="addMsg" class="status" style="margin-top:9px"></div>
-</section>
-<section id="history" class="card panel hidden"><h2>Istoric</h2><div id="entries" class="muted">Nicio recompensă înregistrată încă.</div><button id="clear" class="secondary" style="margin-top:12px">Șterge istoricul de pe acest dispozitiv</button></section>
-<footer>Confidențialitate: informațiile sunt păstrate local în browserul acestui dispozitiv. Nu introduce seed phrase, parole, coduri sau chei private. Verificările automate sunt executate de GitHub Actions; această pagină doar afișează raportul. Nu trimite plăți și nu revendică recompense în locul tău.</footer>
-</main>
-<script>
-const $=id=>document.getElementById(id);
-let records=[];
-try{records=JSON.parse(localStorage.getItem('satoshiBotRecords')||'[]');if(!Array.isArray(records))records=[];}catch(e){records=[]}
-let checks=0;
-function save(){try{localStorage.setItem('satoshiBotRecords',JSON.stringify(records));}catch(e){}render();}
-function render(){
- const total=records.reduce((s,r)=>s+r.amount,0);
- $('balance').textContent=total.toLocaleString('en-US')+' sats';
- $('count').textContent=records.length;
- $('entries').innerHTML=records.length?records.map((r,i)=>`<div class="entry"><div><b>${escapeHtml(r.source)}</b><div class="muted small">${escapeHtml(r.date)}${r.note?' · '+escapeHtml(r.note):''}</div></div><strong>+${r.amount.toLocaleString('en-US')} sats</strong></div>`).join(''):'Nicio recompensă înregistrată încă.';
-}
-function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');}));
-$('checkSources').addEventListener('click',()=>{checks++;$('checks').textContent=checks;$('checkNote').textContent='Ai apăsat butonul la '+new Date().toLocaleString('ro-RO')+'. Aceasta nu este o verificare reală a site-urilor; folosește raportul automat de mai jos.';$('checkNote').className='status';});
-async function loadAutoReport(){const box=$('autoReport');box.textContent='Se încarcă raportul automat…';try{const r=await fetch('./data/rewards.json?ts='+Date.now(),{cache:'no-store'});if(!r.ok)throw new Error('Raport indisponibil');const d=await r.json();const items=(d.sources||[]).map(x=>`${x.name}: ${x.statusLabel||x.status} — ${x.note||''}`).join('\n');box.textContent='Ultima verificare: '+(d.checkedAt||'necunoscută')+'\n'+(items||'Nu există rezultate.')+'\n\nImportant: accesibilitatea site-ului nu confirmă existența unei recompense sau efectuarea unei plăți.';}catch(e){box.textContent='Raportul automat nu este disponibil încă. Încarcă fișierele din pachet și activează GitHub Actions; apoi încearcă din nou.';}}
-$('refreshReport').addEventListener('click',loadAutoReport);
-loadAutoReport();
-$('addReward').addEventListener('click',()=>{const n=Number($('amount').value);if(!Number.isSafeInteger(n)||n<1){$('addMsg').textContent='Introdu un număr întreg pozitiv de satoshi.';return;}records.unshift({amount:n,source:$('source').value,note:$('note').value.trim(),date:new Date().toLocaleString('ro-RO')});save();$('amount').value='';$('note').value='';$('addMsg').textContent='Salvat pe acest dispozitiv.';});
-$('clear').addEventListener('click',()=>{if(confirm('Ștergi istoricul salvat local?')){records=[];save();}});
-render();
-</script></body></html>
+<body>
+  <main class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">₿</div>
+        <div>
+          <h1>Satoshi Bot</h1>
+          <p class="subtitle">Bitcoin Reward Monitor</p>
+        </div>
+      </div>
+      <div class="pill">
+        <span class="dot" id="mainDot"></span>
+        <span id="mainStatus">Se încarcă raportul...</span>
+      </div>
+    </header>
+
+    <section class="summary" aria-label="Rezumat">
+      <div class="stat">
+        <div class="stat-label">Site-uri verificate</div>
+        <div class="stat-number" id="total">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Accesibile</div>
+        <div class="stat-number green" id="online">—</div>
+      </div>
+      <div class="stat">
+        <div class="stat-label">Probleme</div>
+        <div class="stat-number red" id="issues">—</div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-top">
+        <div>
+          <h2>Monitorul site-urilor</h2>
+          <div class="muted" style="margin-top:5px">Deschide un site cu o singură apăsare.</div>
+        </div>
+        <button class="refresh" id="refresh" type="button">↻ Actualizează raportul</button>
+      </div>
+      <div class="error-message" id="error" hidden></div>
+      <div class="site-list" id="sites"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Ultima verificare</h2>
+      <div class="report-line">
+        <span class="muted">Data și ora</span>
+        <span class="report-value" id="checkedAt">Se încarcă...</span>
+      </div>
+      <div class="report-line">
+        <span class="muted">Programare automată</span>
+        <span class="report-value" id="interval">La fiecare 6 ore</span>
+      </div>
+      <div class="report-line">
+        <span class="muted">Sursa raportului</span>
+        <span class="report-value" id="reportStatus">Se încarcă...</span>
+      </div>
+    </section>
+
+    <div class="notice">
+      <strong>Important:</strong> acest dashboard verifică doar dacă paginile publice răspund.
+      Cuvintele detectate nu confirmă existența unei recompense. Nu verifică autentificarea,
+      eligibilitatea, revendicările sau plățile și nu garantează câștiguri în Bitcoin.
+    </div>
+
+    <footer>
+      Satoshi Bot · Dashboard pentru mobil<br>
+      Verifică întotdeauna condițiile și siguranța fiecărui site.
+    </footer>
+  </main>
+
+  <script>
+    const fallbackSites = [
+      { name: "Bitcoin Entdecken", url: "https://bitcoin-entdecken.de/", icon: "₿" },
+      { name: "BTC GACHA", url: "https://www.btcgacha.com/", icon: "🎁" },
+      { name: "MintSats", url: "https://mintsats.app/", icon: "🪙" },
+      { name: "Free Crypto World", url: "https://freecrypto.world/", icon: "🌐" },
+      { name: "sMiles", url: "https://www.smilesbitcoin.com/", icon: "👟" },
+      { name: "FreeBitcoin", url: "https://freebitco.in/", icon: "₿" }
+    ];
+
+    const $ = id => document.getElementById(id);
+    const safeDate = value => {
+      if (!value) return "Nu există încă un raport";
+      const date = new Date(value);
+      if (Number.isNaN(date.getTime())) return "Dată indisponibilă";
+      return new Intl.DateTimeFormat("ro-RO", {
+        dateStyle: "medium",
+        timeStyle: "short",
+        timeZone: "Europe/Berlin"
+      }).format(date) + " (ora Germaniei)";
+    };
+
+    function renderSites(sources) {
+      const merged = fallbackSites.map(base => {
+        const result = sources.find(item => item.url === base.url);
+        return { ...base, ...(result || {}) };
+      });
+
+      $("sites").replaceChildren();
+
+      merged.forEach(site => {
+        const card = document.createElement("article");
+        card.className = "site";
+
+        const heading = document.createElement("div");
+        heading.className = "site-heading";
+
+        const icon = document.createElement("div");
+        icon.className = "site-icon";
+        icon.textContent = site.icon;
+
+        const info = document.createElement("div");
+        info.style.minWidth = "0";
+
+        const title = document.createElement("h3");
+        title.textContent = site.name;
+
+        const status = document.createElement("div");
+        status.className = "site-status";
+
+        if (!site.checkedAt) {
+          status.textContent = "Încă neverificat";
+          status.style.color = "var(--yellow)";
+        } else if (site.accessible === true) {
+          status.textContent = "● Accesibil · HTTP " + (site.httpStatus || "200");
+          status.style.color = "var(--green)";
+        } else {
+          status.textContent = "● Verificare eșuată";
+          status.style.color = "var(--red)";
+        }
+
+        info.append(title, status);
+        heading.append(icon, info);
+
+        const note = document.createElement("p");
+        note.className = "site-note";
+        if (!site.checkedAt) {
+          note.textContent = "Nu există încă rezultate pentru acest site.";
+        } else if (site.accessible === true) {
+          const words = Array.isArray(site.indicators) ? site.indicators : [];
+          note.textContent = words.length
+            ? "Indicii găsite: " + words.slice(0, 4).join(", ")
+            : "Pagina a răspuns la verificare.";
+        } else {
+          note.textContent = "Botul nu a putut confirma accesul automat.";
+        }
+
+        const link = document.createElement("a");
+        link.className = "site-button";
+        link.href = site.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.textContent = "Deschide site-ul ↗";
+        link.setAttribute("aria-label", "Deschide " + site.name);
+
+        card.append(heading, note, link);
+        $("sites").append(card);
+      });
+
+      return merged;
+    }
+
+    async function loadReport() {
+      const button = $("refresh");
+      const error = $("error");
+      button.disabled = true;
+      button.textContent = "Se actualizează...";
+      error.hidden = true;
+
+      try {
+        const response = await fetch("./data/rewards.json?t=" + Date.now(), {
+          cache: "no-store"
+        });
+        if (!response.ok) throw new Error("HTTP " + response.status);
+
+        const report = await response.json();
+        const sources = Array.isArray(report.sources) ? report.sources : [];
+        const sites = renderSites(sources);
+        const checked = sites.filter(site => site.checkedAt);
+        const online = checked.filter(site => site.accessible === true).length;
+        const problems = checked.filter(site => site.accessible !== true).length;
+
+        $("total").textContent = checked.length + "/" + fallbackSites.length;
+        $("online").textContent = online;
+        $("issues").textContent = problems;
+        $("checkedAt").textContent = safeDate(report.checkedAt);
+        $("interval").textContent = "La fiecare " + (report.intervalHours || 6) + " ore";
+        $("reportStatus").textContent = "Raport încărcat";
+
+        $("mainStatus").textContent = checked.length
+          ? "Raport încărcat · " + online + " accesibile"
+          : "Raport fără rezultate";
+        $("mainDot").className = "dot " + (checked.length ? "good" : "");
+
+      } catch (err) {
+        renderSites([]);
+        $("total").textContent = "—";
+        $("online").textContent = "—";
+        $("issues").textContent = "—";
+        $("checkedAt").textContent = "Indisponibil";
+        $("reportStatus").textContent = "Nu s-a putut încărca";
+        $("mainStatus").textContent = "Raport indisponibil";
+        $("mainDot").className = "dot bad";
+        error.textContent = "Nu am putut încărca raportul. Verifică dacă data/rewards.json există și dacă GitHub Pages a publicat ultima versiune.";
+        error.hidden = false;
+      } finally {
+        button.disabled = false;
+        button.textContent = "↻ Actualizează raportul";
+      }
+    }
+
+    $("refresh").addEventListener("click", loadReport);
+    loadReport();
+  </script>
+</body>
+</html>
