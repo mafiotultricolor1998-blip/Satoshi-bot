@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#111827">
+<title>Satoshi Bot</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d30;--panel2:#1d2940;--text:#f4f7fb;--muted:#a6b2c8;--orange:#f7931a;--green:#55d6a1;--line:#2b3852}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top right,#1a2a46 0,#0b1020 44%);color:var(--text);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+main{max-width:760px;margin:auto;padding:22px 16px calc(36px + env(safe-area-inset-bottom))}
+header{display:flex;align-items:center;gap:12px;margin:8px 0 22px}.logo{width:52px;height:52px;border-radius:16px;background:var(--orange);display:grid;place-items:center;font-size:30px;font-weight:800;color:#fff}.subtitle{color:var(--muted);font-size:13px;margin-top:4px}
+h1{font-size:25px;margin:0}h2{font-size:18px;margin:0 0 14px}p{line-height:1.5}.card{background:rgba(21,29,48,.94);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 10px 28px #0002}.hero{background:linear-gradient(130deg,#263751,#182239);padding:22px}.muted{color:var(--muted)}.small{font-size:12px}.balance{font-size:36px;font-weight:800;letter-spacing:-1px;margin:8px 0}.pill{display:inline-block;border-radius:99px;background:#26354e;color:#cfe0f7;padding:5px 9px;font-size:12px}.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}.stat{background:#10182a;border:1px solid var(--line);padding:13px;border-radius:13px}.stat strong{display:block;font-size:23px;margin-top:7px}.tabs{display:flex;gap:8px;margin:15px 0;flex-wrap:wrap}.tabs button{flex:1;min-width:90px}.btn,button{border:0;border-radius:12px;padding:12px 14px;font:inherit;font-weight:650;cursor:pointer;background:var(--orange);color:#171717}.btn.secondary,button.secondary{background:#26354e;color:var(--text);border:1px solid #3a4b68}button:disabled{opacity:.45;cursor:not-allowed}label{display:block;font-size:13px;color:var(--muted);margin:10px 0 6px}input,select{width:100%;padding:12px;border-radius:11px;border:1px solid #3a4b68;background:#0d1525;color:var(--text);font:inherit}.row{display:flex;gap:10px;align-items:center}.row>*{flex:1}.source{padding:13px 0;border-top:1px solid var(--line)}.source:first-of-type{border-top:0}.source h3{font-size:15px;margin:0 0 5px}.source p{font-size:13px;color:var(--muted);margin:5px 0 9px}.source a{color:#ffbd66;text-decoration:none;font-weight:650}.status{font-size:12px;color:var(--muted)}.status.ok{color:var(--green)}.notice{border-left:3px solid var(--orange);padding:10px 12px;background:#211c18;border-radius:8px;color:#f5d8b2;font-size:13px;line-height:1.5}.hidden{display:none}.entry{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.entry:last-child{border:0}.entry strong{color:var(--green)}footer{color:var(--muted);font-size:12px;line-height:1.5;padding:12px}
+</style>
+</head>
+<body><main>
+<header><div class="logo">₿</div><div><h1>Satoshi Bot</h1><div class="subtitle">Tracker de recompense · versiune gratuită</div></div></header>
+<section class="card hero">
+ <span class="pill">PORTOFELUL NU ESTE CONECTAT</span>
+ <div class="muted" style="margin-top:16px;font-size:13px">Sold înregistrat manual</div>
+ <div class="balance" id="balance">0 sats</div>
+ <div class="muted small">Nu este soldul real din Wallet of Satoshi. Înregistrează numai plăți pe care le-ai verificat.</div>
+</section>
+<section class="stats">
+ <div class="stat"><span class="muted small">Recompense înregistrate</span><strong id="count">0</strong></div>
+ <div class="stat"><span class="muted small">Surse verificate în această sesiune</span><strong id="checks">0</strong></div>
+</section>
+<nav class="tabs"><button class="secondary" data-tab="sources">Surse</button><button class="secondary" data-tab="add">Adaugă sats</button><button class="secondary" data-tab="history">Istoric</button></nav>
+<section id="sources" class="card panel"><h2>Surse de recompense</h2>
+ <p class="muted small">Verificarea deschide site-urile oficiale. Această pagină nu poate confirma automat că ai fost plătit și nu automatizează revendicările.</p>
+ <div class="source"><h3>Bitcoin Entdecken</h3><p>Recompensă unică deja revendicată în cazul tău; plata nu a fost confirmată.</p><a href="https://bitcoin-entdecken.de/en/sats" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
+ <div class="source"><h3>sMiles</h3><p>Verifică disponibilitatea, regulile și pragul de retragere înainte să începi.</p><a href="https://www.smilesbitcoin.com/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
+ <div class="source"><h3>FreeBTC</h3><p>Verifică termenii, retragerile și dacă serviciul este disponibil în regiunea ta.</p><a href="https://freebtc.app/" target="_blank" rel="noopener">Deschide site-ul ↗</a></div>
+ <button id="checkSources" class="secondary" style="width:100%;margin-top:12px">Marchează sursele ca verificate</button><div id="checkNote" class="status" style="margin-top:9px">Nu s-au făcut verificări încă.</div>
+</section>
+<section id="add" class="card panel hidden"><h2>Înregistrează o recompensă</h2><div class="notice">Adaugă doar satoshi primiți efectiv. Nu înregistra cei 21 sats de pe Bitcoin Entdecken până când nu vezi plata în portofel.</div>
+ <label for="amount">Sumă în satoshi</label><input id="amount" type="number" min="1" step="1" placeholder="Ex. 21">
+ <label for="source">Sursa</label><select id="source"><option>Bitcoin Entdecken</option><option>sMiles</option><option>FreeBTC</option><option>Altă sursă</option></select>
+ <label for="note">Notă (opțional)</label><input id="note" maxlength="120" placeholder="Ex. plata Lightning confirmată">
+ <button id="addReward" style="width:100%;margin-top:14px">Salvează recompensa</button><div id="addMsg" class="status" style="margin-top:9px"></div>
+</section>
+<section id="history" class="card panel hidden"><h2>Istoric</h2><div id="entries" class="muted">Nicio recompensă înregistrată încă.</div><button id="clear" class="secondary" style="margin-top:12px">Șterge istoricul de pe acest dispozitiv</button></section>
+<footer>Confidențialitate: informațiile sunt păstrate local în browserul acestui dispozitiv. Nu introduce seed phrase, parole, coduri sau chei private. Versiunea aceasta nu rulează în fundal și nu trimite plăți.</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+let records=[];
+try{records=JSON.parse(localStorage.getItem('satoshiBotRecords')||'[]');if(!Array.isArray(records))records=[];}catch(e){records=[]}
+let checks=0;
+function save(){try{localStorage.setItem('satoshiBotRecords',JSON.stringify(records));}catch(e){}render();}
+function render(){
+ const total=records.reduce((s,r)=>s+r.amount,0);
+ $('balance').textContent=total.toLocaleString('en-US')+' sats';
+ $('count').textContent=records.length;
+ $('entries').innerHTML=records.length?records.map((r,i)=>`<div class="entry"><div><b>${escapeHtml(r.source)}</b><div class="muted small">${escapeHtml(r.date)}${r.note?' · '+escapeHtml(r.note):''}</div></div><strong>+${r.amount.toLocaleString('en-US')} sats</strong></div>`).join(''):'Nicio recompensă înregistrată încă.';
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+document.querySelectorAll('[data-tab]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.panel').forEach(p=>p.classList.add('hidden'));$(b.dataset.tab).classList.remove('hidden');}));
+$('checkSources').addEventListener('click',()=>{checks++;$('checks').textContent=checks;$('checkNote').textContent='Verificare locală înregistrată: '+new Date().toLocaleString('ro-RO')+'. Deschide fiecare sursă pentru a verifica ofertele actuale.';$('checkNote').className='status ok';});
+$('addReward').addEventListener('click',()=>{const n=Number($('amount').value);if(!Number.isSafeInteger(n)||n<1){$('addMsg').textContent='Introdu un număr întreg pozitiv de satoshi.';return;}records.unshift({amount:n,source:$('source').value,note:$('note').value.trim(),date:new Date().toLocaleString('ro-RO')});save();$('amount').value='';$('note').value='';$('addMsg').textContent='Salvat pe acest dispozitiv.';});
+$('clear').addEventListener('click',()=>{if(confirm('Ștergi istoricul salvat local?')){records=[];save();}});
+render();
+</script></body></html>
