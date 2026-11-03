@@ -1,16 +1,15 @@
 {
-  "checkedAt": "2026-11-03T07:20:10.328948+00:00",
+  "checkedAt": "2026-11-03T13:12:53.355424+00:00",
   "intervalHours": 6,
   "disclaimer": "Public-page monitoring only. No account login, eligibility verification, claims, or payments.",
   "sources": [
     {
       "name": "Bitcoin Entdecken",
       "url": "https://bitcoin-entdecken.de/",
-      "checkedAt": "2026-11-03T07:20:10.328962+00:00",
+      "checkedAt": "2026-11-03T13:12:53.355435+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
-        "satoshi",
         "bitcoin"
       ],
       "note": "Public page checked. Keywords are clues only; they do not confirm an available reward or payment."
@@ -18,7 +17,7 @@
     {
       "name": "BTC GACHA",
       "url": "https://www.btcgacha.com/",
-      "checkedAt": "2026-11-03T07:20:10.849041+00:00",
+      "checkedAt": "2026-11-03T13:12:53.897539+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -35,7 +34,7 @@
     {
       "name": "MintSats",
       "url": "https://mintsats.app/",
-      "checkedAt": "2026-11-03T07:20:11.100711+00:00",
+      "checkedAt": "2026-11-03T13:12:54.302191+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -51,7 +50,7 @@
     {
       "name": "Free Crypto World",
       "url": "https://freecrypto.world/",
-      "checkedAt": "2026-11-03T07:20:11.712401+00:00",
+      "checkedAt": "2026-11-03T13:12:54.825763+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -69,7 +68,7 @@
     {
       "name": "sMiles",
       "url": "https://www.smilesbitcoin.com/",
-      "checkedAt": "2026-11-03T07:20:11.933934+00:00",
+      "checkedAt": "2026-11-03T13:12:55.231241+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -83,7 +82,7 @@
     {
       "name": "FreeBitcoin",
       "url": "https://freebitco.in/",
-      "checkedAt": "2026-11-03T07:20:12.153098+00:00",
+      "checkedAt": "2026-11-03T13:12:55.351665+00:00",
       "accessible": false,
       "httpStatus": null,
       "indicators": [],
