@@ -1,12 +1,12 @@
 {
-  "checkedAt": "2026-11-25T19:03:41.882537+00:00",
+  "checkedAt": "2026-11-26T01:27:49.357686+00:00",
   "intervalHours": 6,
   "disclaimer": "Public-page monitoring only. No account login, eligibility verification, claims, or payments.",
   "sources": [
     {
       "name": "Bitcoin Entdecken",
       "url": "https://bitcoin-entdecken.de/",
-      "checkedAt": "2026-11-25T19:03:41.882548+00:00",
+      "checkedAt": "2026-11-26T01:27:49.357702+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -18,7 +18,7 @@
     {
       "name": "BTC GACHA",
       "url": "https://www.btcgacha.com/",
-      "checkedAt": "2026-11-25T19:03:42.619542+00:00",
+      "checkedAt": "2026-11-26T01:27:50.181916+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -35,7 +35,7 @@
     {
       "name": "MintSats",
       "url": "https://mintsats.app/",
-      "checkedAt": "2026-11-25T19:03:42.756784+00:00",
+      "checkedAt": "2026-11-26T01:27:50.489733+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -51,7 +51,7 @@
     {
       "name": "Free Crypto World",
       "url": "https://freecrypto.world/",
-      "checkedAt": "2026-11-25T19:03:43.218169+00:00",
+      "checkedAt": "2026-11-26T01:27:51.276631+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -69,7 +69,7 @@
     {
       "name": "sMiles",
       "url": "https://www.smilesbitcoin.com/",
-      "checkedAt": "2026-11-25T19:03:43.671317+00:00",
+      "checkedAt": "2026-11-26T01:27:51.652516+00:00",
       "accessible": true,
       "httpStatus": 200,
       "indicators": [
@@ -83,7 +83,7 @@
     {
       "name": "FreeBitcoin",
       "url": "https://freebitco.in/",
-      "checkedAt": "2026-11-25T19:03:43.976384+00:00",
+      "checkedAt": "2026-11-26T01:27:51.773144+00:00",
       "accessible": false,
       "httpStatus": null,
       "indicators": [],
